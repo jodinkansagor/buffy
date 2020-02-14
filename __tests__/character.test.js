@@ -32,6 +32,25 @@ describe('Charater routes', () => {
 
   it('creates a character', () => {
     return request(app)
-    .post('api/')
+      .post('/api/v1/character')
+      .send({
+        name: 'Angel',
+        species: 'Vampire',
+        seasons: [1, 2, 3, 4, 5, 7],
+        image: 'https://upload.wikimedia.org/wikipedia/en/5/57/Angel_%28Buffy_the_Vampire_Slayer%29.jpg',
+        actor: 'David Boreanaz'
+      })
+      .then(res => {
+        expect(res.body).toEqual({
+          _id: expect.any(String),
+          name: 'Angel',
+          species: 'Vampire',
+          seasons: [1, 2, 3, 4, 5, 7],
+          image: 'https://upload.wikimedia.org/wikipedia/en/5/57/Angel_%28Buffy_the_Vampire_Slayer%29.jpg',
+          actor: 'David Boreanaz',
+          __v: 0
+        });
+      });
+
   });
-})
+});
