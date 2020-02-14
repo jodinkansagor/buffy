@@ -69,4 +69,20 @@ describe('Charater routes', () => {
         });
       });
   });
+
+  it('can get all the characters', () => {
+    return request(app)
+      .get('/api/v1/characters')
+      .then(res => {
+        expect(res.body).toEqual([{
+          _id: angel.id,
+          name: 'Angel',
+          species: 'Vampire',
+          seasons: [1, 2, 3, 4, 5, 7],
+          image: 'https://upload.wikimedia.org/wikipedia/en/5/57/Angel_%28Buffy_the_Vampire_Slayer%29.jpg',
+          actor: 'David Boreanaz',
+          __v: 0
+        }]);
+      });
+  });
 });
